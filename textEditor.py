@@ -9,8 +9,7 @@ from PyQt5.QtWidgets import (
     QToolBar,
     QStatusBar,
 )
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont
 
 
 class TextEditor(QMainWindow):
@@ -22,9 +21,9 @@ class TextEditor(QMainWindow):
 
         # Головне текстове поле
         self.text_edit = QTextEdit(self)
+        self.text_edit.setFont(QFont("Arial", 14))  # Збільшений розмір шрифту
         self.setCentralWidget(self.text_edit)
 
-        # Виклик функцій створення меню, панелі інструментів і статусного рядка
         self.create_menu()
         self.create_toolbar()
         self.create_status_bar()
@@ -33,8 +32,6 @@ class TextEditor(QMainWindow):
 
     def create_menu(self):
         menu_bar = self.menuBar()
-
-        # Меню "Файл"
         file_menu = menu_bar.addMenu("Файл")
 
         new_action = QAction("Новий", self)
@@ -54,9 +51,7 @@ class TextEditor(QMainWindow):
         exit_action.triggered.connect(self.close)
         file_menu.addAction(exit_action)
 
-        # Меню "Редагування"
         edit_menu = menu_bar.addMenu("Редагування")
-
         cut_action = QAction("Вирізати", self)
         cut_action.triggered.connect(self.text_edit.cut)
         edit_menu.addAction(cut_action)
@@ -69,9 +64,7 @@ class TextEditor(QMainWindow):
         paste_action.triggered.connect(self.text_edit.paste)
         edit_menu.addAction(paste_action)
 
-        # Меню "Допомога"
         help_menu = menu_bar.addMenu("Допомога")
-
         about_action = QAction("Про програму", self)
         about_action.triggered.connect(self.show_about)
         help_menu.addAction(about_action)
