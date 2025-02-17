@@ -76,6 +76,22 @@ class TextEditor(QMainWindow):
         about_action.triggered.connect(self.show_about)
         help_menu.addAction(about_action)
 
+    def create_toolbar(self):
+        toolbar = QToolBar(self)
+        self.addToolBar(toolbar)
+
+        new_action = QAction("Новий", self)
+        new_action.triggered.connect(self.new_file)
+        toolbar.addAction(new_action)
+
+        open_action = QAction("Відкрити", self)
+        open_action.triggered.connect(self.open_file)
+        toolbar.addAction(open_action)
+
+        save_action = QAction("Зберегти", self)
+        save_action.triggered.connect(self.save_file)
+        toolbar.addAction(save_action)
+
     def create_status_bar(self):
         self.status_bar = QStatusBar()
         self.setStatusBar(self.status_bar)
