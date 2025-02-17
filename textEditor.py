@@ -31,28 +31,50 @@ class TextEditor(QMainWindow):
 
         self.current_file = ""
 
+    def create_menu(self):
+        menu_bar = self.menuBar()
+
+        # Меню "Файл"
+        file_menu = menu_bar.addMenu("Файл")
+
+        new_action = QAction("Новий", self)
+        new_action.triggered.connect(self.new_file)
+        file_menu.addAction(new_action)
+
+        open_action = QAction("Відкрити", self)
+        open_action.triggered.connect(self.open_file)
+        file_menu.addAction(open_action)
+
+        save_action = QAction("Зберегти", self)
+        save_action.triggered.connect(self.save_file)
+        file_menu.addAction(save_action)
+
+        file_menu.addSeparator()
+        exit_action = QAction("Вийти", self)
+        exit_action.triggered.connect(self.close)
+        file_menu.addAction(exit_action)
+
+        # Меню "Редагування"
+        edit_menu = menu_bar.addMenu("Редагування")
+
+        cut_action = QAction("Вирізати", self)
+        cut_action.triggered.connect(self.text_edit.cut)
+        edit_menu.addAction(cut_action)
+
+        copy_action = QAction("Копіювати", self)
+        copy_action.triggered.connect(self.text_edit.copy)
+        edit_menu.addAction(copy_action)
+
+        paste_action = QAction("Вставити", self)
+        paste_action.triggered.connect(self.text_edit.paste)
+        edit_menu.addAction(paste_action)
+
         # Меню "Допомога"
         help_menu = menu_bar.addMenu("Допомога")
 
         about_action = QAction("Про програму", self)
         about_action.triggered.connect(self.show_about)
         help_menu.addAction(about_action)
-
-    def create_toolbar(self):
-        toolbar = QToolBar(self)
-        self.addToolBar(toolbar)
-
-        new_action = QAction("Новий", self)
-        new_action.triggered.connect(self.new_file)
-        toolbar.addAction(new_action)
-
-        open_action = QAction("Відкрити", self)
-        open_action.triggered.connect(self.open_file)
-        toolbar.addAction(open_action)
-
-        save_action = QAction("Зберегти", self)
-        save_action.triggered.connect(self.save_file)
-        toolbar.addAction(save_action)
 
     def create_status_bar(self):
         self.status_bar = QStatusBar()
