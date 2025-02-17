@@ -131,7 +131,7 @@ class TextEditor(QMainWindow):
                 self.status_bar.showMessage(f"Файл збережено: {self.current_file}")
             except Exception as e:
                 QMessageBox.critical(
-                    self, "Помилка", f"Не вдалося зберегти файл: {str(e)}"
+                    self, "Помилка!", f"Не вдалося зберегти файл: {str(e)}"
                 )
 
     def show_about(self):
